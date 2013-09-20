@@ -6,7 +6,7 @@ define tomcat($user, $tomcat_location, $listening_port, $shutdown_port, $version
 		owner => "${user}",
 		group => "${user}",
 		ensure => [ ['directory'] , ['present']],
-		mode => '0755',
+		mode => '0750',
 	}
 
 	file { "/var/log/${user}/${tomcat_location}":
@@ -20,16 +20,24 @@ define tomcat($user, $tomcat_location, $listening_port, $shutdown_port, $version
                      ensure  => present,
                      content => template("tomcat/server.xml.erb"),
                      require =>  File["/usr/local/${tomcat_location}"],
-                     mode => '0755',
+                     mode => '0750',
                      owner =>"${user}",
                      group =>"${user}",
+        }
+
+	file { "/usr/local/${tomcat_location}/webapps" :
+                ensure => [ ['directory'] , ['present']],
+                require =>  File["/usr/local/${tomcat_location}"],
+                mode => '0750',
+                owner =>"${user}",
+                group =>"${user}",
         }
 
 	file { "/usr/local/${tomcat_location}/webapps/ckeditor" :
 		ensure => [ ['directory'] , ['present']],
 		source  => "puppet:///modules/tomcat/ckeditor",
-		require =>  File["/usr/local/${tomcat_location}"],
-		mode => '0755',
+		require =>  File["/usr/local/${tomcat_location}/webapps"],
+		mode => '0750',
 		owner =>"${user}",
 		group =>"${user}",
 		recurse => true,
