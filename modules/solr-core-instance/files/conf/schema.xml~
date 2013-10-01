@@ -175,7 +175,7 @@
 	</fields>
 	
 
-	<similarity class="com.snapdeal.solr.SnapdealSimilarity" />
+	<!--similarity class="com.snapdeal.solr.SnapdealSimilarity" /-->
 
 	<uniqueKey>solrId</uniqueKey>
 	<defaultSearchField>solrId</defaultSearchField>
