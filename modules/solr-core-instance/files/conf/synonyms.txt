@@ -1,6 +1,6 @@
 watch,watches
 disk,disc
-tablets,tabs,tablets,tab
+tablets, tabs, notebook, tablet,tab
 movies, movie
 irons=>iron
 trousers,trouser,pants,pant
@@ -57,17 +57,3 @@ GRAW=>Ghost Recon Advance Warfighter
 PES=>Pro Evolution Soccer
 PSP=>playstation portable
 PS3=>PlayStation 3
-klein,klien,kline
-deo,deodrant,deodorants,deodorant
-notebook,notebooks
-deos,deoderent,deodorent,deodarant,deodarent,deo,deodrant,deodorant
-graphic,graphics
-card,cards
-cabinet,CPU cabinet
-lehenga,lehnga,lehanga,lahnga,lahenga
-stationery,stationary
-flowers=>fresh flowers
-suit,suits
-Foster's,Foster,Fostersz,Fosters,foster's,Fostar's,Fostar
-biocare=>bio care
-
