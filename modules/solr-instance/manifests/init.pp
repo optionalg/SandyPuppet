@@ -10,7 +10,7 @@ define solr-instance( $instance_name, $startup_port ,$shutdown_port, $version = 
 
 	tomcat{"${instance_name}-tomcat":
                 user => solr,
-                user_tomcat => "${instance_name}-tomcat",
+                tomcat_location => "${instance_name}-tomcat",
                 listening_port => "${startup_port}",
                 shutdown_port => "${shutdown_port}",
         }
