@@ -1,4 +1,4 @@
-import 'usertomcat'
+import 'tomcat'
 
 define solr-instance( $instance_name, $startup_port ,$shutdown_port, $version = 4) {
 	file { "/etc/solr/${instance_name}":
@@ -8,7 +8,7 @@ define solr-instance( $instance_name, $startup_port ,$shutdown_port, $version = 
 		recurse => true,
 	}
 
-	usertomcat{"${instance_name}-tomcat":
+	tomcat{"${instance_name}-tomcat":
                 user => solr,
                 user_tomcat => "${instance_name}-tomcat",
                 listening_port => "${startup_port}",
@@ -18,7 +18,7 @@ define solr-instance( $instance_name, $startup_port ,$shutdown_port, $version = 
 	file{ "/usr/local/${instance_name}-tomcat/webapps/solr":
 		ensure => 'absent',
 		force => true,
-                require => Usertomcat["${instance_name}-tomcat"],
+                require => Tomcat["${instance_name}-tomcat"],
         }
 
 	file{ "/usr/local/${instance_name}-tomcat/webapps/solr.war":
@@ -26,7 +26,7 @@ define solr-instance( $instance_name, $startup_port ,$shutdown_port, $version = 
 		group => solr,
 		mode => '0755',
 		source => "puppet:///modules/solr-instance/solr-${version}.war",
-		require => Usertomcat["${instance_name}-tomcat"],
+		require => Tomcat["${instance_name}-tomcat"],
 	}
 
 	file{ "/usr/local/${instance_name}-tomcat/bin/setenv.sh":
@@ -34,7 +34,7 @@ define solr-instance( $instance_name, $startup_port ,$shutdown_port, $version = 
                 group => solr,
                 mode => '0755',
 		content => template("solr-instance/setenv.sh"),
-                require => Usertomcat["${instance_name}-tomcat"],
+                require => Tomcat["${instance_name}-tomcat"],
         }
 }
 
