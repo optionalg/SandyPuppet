@@ -1,4 +1,4 @@
-define solr-core-instance( $instance_name, $core_name, $master, $slave, $port, $version => 4) {
+define solr-core-instance( $instance_name, $core_name, $master, $slave, $port, $version = 4) {
 	file { "/etc/solr/${instance_name}/${core_name}/conf":
 		owner => solr,
 		group => solr,
