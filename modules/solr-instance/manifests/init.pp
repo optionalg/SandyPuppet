@@ -1,12 +1,21 @@
 import 'tomcat'
 
 define solr-instance( $instance_name, $startup_port ,$shutdown_port, $version = 4) {
-	file { "/etc/solr/${instance_name}":
+	file { "/etc/solr/${instance_name}" ]:
 		owner => solr,
 		group => solr,
 		ensure => directory,
 		recurse => true,
 	}
+
+	file { "/etc/solr/${instance_name}/conf":
+		owner => solr,
+		group => solr,
+		ensure => directory,
+		source => "puppet:///modules/solr-instance/solr-${instance_name}/conf",
+		recurse => true,
+	}
+
 
 	tomcat{"${instance_name}-tomcat":
                 user => solr,
