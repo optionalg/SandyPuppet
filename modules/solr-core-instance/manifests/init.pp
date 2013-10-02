@@ -3,7 +3,7 @@ define solr-core-instance( $instance_name, $core_name, $master, $slave, $port) {
 		owner => solr,
 		group => solr,
 		ensure => link,
-		target => /etc/solr/${instance_name}/conf
+		target => "/etc/solr/${instance_name}/conf",
 	}
 	
 	file { "/etc/solr/${instance_name}/${core_name}/conf/solrcore.properties":
