@@ -2,7 +2,7 @@ class base-mongo(){
 	$public_ip = $::ipaddress
 	include base-mongo::params, base-mongo::install, base-mongo::config
 }
-
+/*
 class base-mongo::params {
 	case $operatingsystem {
 		/(Ubuntu|Debian)/: {
@@ -52,4 +52,4 @@ class base-mongo::config {
 		before => Class['base-mongo::install'],
 	}
 }
-
+*/
