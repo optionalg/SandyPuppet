@@ -1,19 +1,18 @@
 class base-mongo(){
-
 	$public_ip = $::ipaddress
-	include base-mongo::params, base-mongo::install, base-mongo::config,
+	include base-mongo::params, base-mongo::install, base-mongo::config
 }
 
 class base-mongo::params {
 	case $operatingsystem {
 		/(Ubuntu|Debian)/: {
-			$server_pkg_name = 'mongodb-10gen',
-			$sources_list_file = '/etc/apt/sources.list.d/10gen.list',
-			$sources_list_file_content = 'mongo_debian.repo',
+			$server_pkg_name = 'mongodb-10gen'
+			$sources_list_file = '/etc/apt/sources.list.d/10gen.list'
+			$sources_list_file_content = 'mongo_debian.repo'
 		}
 		/(RedHat|CentOS|Fedora)/: {
-			$server_pkg_name = 'mongo-10gen-server',
-			$sources_list_file = '/etc/yum.repos.d/10gen.repo',
+			$server_pkg_name = 'mongo-10gen-server'
+			$sources_list_file = '/etc/yum.repos.d/10gen.repo'
 			$sources_list_file_content = 'mongo.repo'
 		}
 	}
@@ -49,7 +48,7 @@ class base-mongo::config {
 		owner => mongo,
 		group => mongo,
 		ensure => directory,
-		require => [ User['mongo'], File['data'], ],
+		require => [ User['mongo'], File['/data'], ],
 		before => Class['base-mongo::install'],
 	}
 }
