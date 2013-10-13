@@ -24,4 +24,22 @@ class nodejs() {
                 source => "puppet:///modules/nodejs/startNodeApp.sh",
                 require => File["/home/nodejs/nodeapps"],
         }
+
+	Exec {
+		path => [
+			'/usr/local/bin',
+			'/opt/local/bin',
+			'/usr/bin',
+			'/usr/sbin',
+			'/bin',
+			'/sbin'],
+			logoutput => true,
+	}
+
+	exec { "install_nvm":
+		user      => nodejs,
+		command   => "curl https://raw.github.com/creationix/nvm/master/install.sh | sh",
+		logoutput => true,
+		require => Sruser['nodejs'],
+	}
 }
