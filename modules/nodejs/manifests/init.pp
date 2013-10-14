@@ -44,4 +44,10 @@ class nodejs() {
 		require => Sruser['nodejs'],
 		environment => [ "HOME=/home/nodejs" ],
 	}
+
+	exec { "install_npm":
+                user      => root,
+                command   => "curl http://npmjs.org/install.sh | sh",
+                logoutput => true,
+        }
 }
