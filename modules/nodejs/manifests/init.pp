@@ -47,7 +47,7 @@ class nodejs() {
 
 	exec { "install_npm":
                 user      => root,
-                command   => "curl http://npmjs.org/install.sh | sh",
+                command   => "curl https://npmjs.org/install.sh | sh",
                 logoutput => true,
         }
 }
