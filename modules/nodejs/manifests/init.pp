@@ -39,7 +39,9 @@ class nodejs() {
 	exec { "install_nvm":
 		user      => nodejs,
 		command   => "curl https://raw.github.com/creationix/nvm/master/install.sh | sh",
+		cwd       => "/home/nodejs/",
 		logoutput => true,
 		require => Sruser['nodejs'],
+		environment => [ "HOME=/home/nodejs" ],
 	}
 }
