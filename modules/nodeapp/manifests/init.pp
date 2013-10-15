@@ -14,4 +14,11 @@ define nodeapp( $app_name) {
                 ensure => present,
 		mode => 0666,
         }
+
+	file { "/home/nodejs/nodeapps/${app_name}":
+                owner => nodejs,
+                group => nodejs,
+                ensure => ['directory','present'],
+                mode => 0755,
+        }
 }
