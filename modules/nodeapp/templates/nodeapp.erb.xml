@@ -9,7 +9,7 @@ script
     export HOME="/home/nodejs"
 
     echo $$ > /var/run/<%= app_name %>.pid
-    exec sudo -u nodejs /home/nodejs/start_node_app.sh <%= app_name %>
+    exec sudo -u nodejs /home/nodejs/startNodeApp.sh <%= app_name %>
 end script
 
 pre-start script
