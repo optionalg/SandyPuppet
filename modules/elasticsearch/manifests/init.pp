@@ -1,4 +1,4 @@
-define elasticsearch($version = 0.90.5,){
+define elasticsearch($version = "0.90.5",){
 
 	Exec {
 		path => [
