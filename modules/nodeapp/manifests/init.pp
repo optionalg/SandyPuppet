@@ -23,7 +23,7 @@ define nodeapp( $app_name) {
         }
 
 	file { "/etc/monit/conf.d/${app_name}.monit":
-		content => "/nodeapp/monit_conf.erb.xml",
+		content => template("/nodeapp/monit_conf.erb.xml"),
 		mode => 0644,
 	}
 }
