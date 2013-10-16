@@ -6,6 +6,7 @@ class monit() {
 	file { "/etc/monit/monitrc":
                 source => "puppet:///modules/monit/monitrc",
 		require => Package['monit'],
+		mode => 0600,
         }
 	
 }
