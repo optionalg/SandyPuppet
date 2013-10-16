@@ -119,7 +119,7 @@
 #    use address localhost  # only accept connection from localhost
 #    allow localhost        # allow localhost to connect to the server and
 #    allow admin:monit      # require user 'admin' with password 'monit'
-    allow monimus:monimus      # require user 'admin' with password 'monit'
+    allow monit:monit      # require user 'admin' with password 'monit'
     allow @monit           # allow users of group 'monit' to connect (rw)
     allow @users readonly  # allow users of group 'users' to connect readonly
 #
