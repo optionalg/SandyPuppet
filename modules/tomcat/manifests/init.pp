@@ -19,7 +19,7 @@ define tomcat($user, $tomcat_location, $listening_port, $shutdown_port, $version
 	file { "${base_tomcat}/${tomcat_location}/conf/server.xml" :
                      ensure  => present,
                      content => template("tomcat/server.xml.erb"),
-                     require =>  File["/usr/local/${tomcat_location}"],
+                     require =>  File["${base_tomcat}/${tomcat_location}"],
                      mode => '0750',
                      owner =>"${user}",
                      group =>"${user}",
@@ -27,7 +27,7 @@ define tomcat($user, $tomcat_location, $listening_port, $shutdown_port, $version
 
 	file { "${base_tomcat}/${tomcat_location}/webapps" :
                 ensure => [ ['directory'] , ['present']],
-                require =>  File["/usr/local/${tomcat_location}"],
+                require =>  File["${base_tomcat}/${tomcat_location}"],
                 mode => '0750',
                 owner =>"${user}",
                 group =>"${user}",
