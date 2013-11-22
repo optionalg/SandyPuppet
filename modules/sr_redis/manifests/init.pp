@@ -1,4 +1,4 @@
-define sr_redis($port = 6379, $master = "master", $master_port) {
+define sr_redis($port = 6379, $master = "master", $master_port = 6379) {
 
 	$redis_conf_file = "${master}" ? {
 		master => 'sr_redis/redis.master.conf',
