@@ -7,7 +7,7 @@ define sr_redis($port = 6379, $master = "master", $master_port = 6379) {
 
 	file {"/etc/redis/${port}.conf":
 		ensure => present,
-		content => template("${redis_conf_file}'),
+		content => template("${redis_conf_file}"),
 	}
 
 	file {"/etc/init.d/redis_${port}":
