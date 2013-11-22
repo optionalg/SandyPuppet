@@ -1,5 +1,10 @@
 class base_redis() {
 
+	file {["/etc/redis", "/var/redis"]:
+		ensure => directory,
+	}
+
+
 	file { "/usr/local/bin/redis-server":
 		source  => "puppet:///modules/base_redis/redis-server",
 		mode => 0754,
