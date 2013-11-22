@@ -1,8 +1,13 @@
-define sr_redis($port = 6379) {
+define sr_redis($port = 6379, $master = "master", $master_port) {
+
+	$redis_conf_file = "${master}" ? {
+		master => 'sr_redis/redis.master.conf',
+		slave => 'sr_redis/redis.slave.conf',
+	}
 
 	file {"/etc/redis/${port}.conf":
 		ensure => present,
-		content => template('sr_redis/redis.conf'),
+		content => template("${redis_conf_file}'),
 	}
 
 	file {"/etc/init.d/redis_${port}":
