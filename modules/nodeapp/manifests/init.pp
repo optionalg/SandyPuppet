@@ -21,7 +21,7 @@ define nodeapp( $app_name) {
                 ensure => ['directory','present'],
                 mode => 0755,
         }
-
+	###########Make sure monit is installed
 	file { "/etc/monit/conf.d/${app_name}.monit":
 		content => template("nodeapp/monit_conf.erb.xml"),
 		mode => 0644,

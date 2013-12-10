@@ -35,7 +35,7 @@ class nodejs() {
 			'/sbin'],
 			logoutput => true,
 	}
-
+	#########Git should be present in the system########################
 	exec { "install_nvm":
 		user      => nodejs,
 		command   => "curl https://raw.github.com/creationix/nvm/master/install.sh | sh",
@@ -44,6 +44,6 @@ class nodejs() {
 		require => Sruser['nodejs'],
 		environment => [ "HOME=/home/nodejs" ],
 	}
-	
-	#### Install npm on the system as curl https://npmjs.org/install.sh | sh
+	#### Install node using nvm install <version>, check version by nvm ls-remote###########	
+	#### Install npm on the system as curl https://npmjs.org/install.sh | sh     ###########
 }
