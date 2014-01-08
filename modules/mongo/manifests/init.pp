@@ -1,4 +1,4 @@
-define mongo( $port, $replSet, $master, $master_port, $mongoHostName) {
+define mongo( $port, $hostName, $replSet, $master, $master_port, $masterHostName) {
 
 	$mongo_data_dir="/data/mongo/${replSet}_${port}"
 
@@ -61,7 +61,7 @@ define mongo( $port, $replSet, $master, $master_port, $mongoHostName) {
 
 	exec { "replicaset_${master}_${port}":
 		user      => mongo,
-		command => "mongo --port ${master_port} < ${mongo_data_dir}/replicaset.cmd",
+		command => "mongo ${masterHostName}:${master_port} < ${mongo_data_dir}/replicaset.cmd",
 		logoutput => true,
 		require => File["replicaset_file_${master}_${port}"],
 	}
