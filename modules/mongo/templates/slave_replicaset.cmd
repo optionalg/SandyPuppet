@@ -1,1 +1,1 @@
-rs.add("<%= mongoHostName %>:<%= port %>")
+rs.add("<%= hostName %>:<%= port %>")
