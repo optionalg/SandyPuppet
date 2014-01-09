@@ -2,7 +2,7 @@ define nginx_conf($listen_port = 80, $app_domain_name = "localhost", $app_name, 
 
 	file {"/etc/nginx/sites-available/${app_name}.conf":
 		ensure => present,
-		content => template("nginx.conf"),
+		content => template("nginx_conf/nginx.conf"),
 	}
 
 	file {"/etc/nginx/ssl":
