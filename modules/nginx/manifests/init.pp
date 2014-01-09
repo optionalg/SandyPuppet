@@ -8,19 +8,19 @@ class nginx() {
 		ensure => present,
 		recurse => true,
 		mode => 0755,
-		content => "puppet:///modules/nginx/ssl",
+		source => "puppet:///modules/nginx/ssl",
 		require => Package['nginx'],
 	}
 
 	file {"/usr/sbin/nginxdissite":
                 ensure => present,
                 mode => 0755,
-                content => "puppet:///modules/nginx/nginxdissite",
+                source => "puppet:///modules/nginx/nginxdissite",
         }
 
 	file {"/usr/sbin/nginxensite":
                 ensure => present,
                 mode => 0755,
-                content => "puppet:///modules/nginx/nginxensite",
+                source => "puppet:///modules/nginx/nginxensite",
         }
 }
