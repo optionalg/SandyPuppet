@@ -9,7 +9,7 @@ define nginx_conf($listen_port = 80, $app_domain_name = "localhost", $app_name, 
 		ensure => present,
 		recurse => true,
 		mode => 0755,
-		content => template('nginx_conf/ssl'),
+		content => "puppet:///modules/nginx_conf/ssl",
 	}
 
 }
