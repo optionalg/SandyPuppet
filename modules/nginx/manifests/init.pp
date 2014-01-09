@@ -12,4 +12,15 @@ class nginx() {
 		require => Package['nginx'],
 	}
 
+	file {"/usr/sbin/nginxdissite":
+                ensure => present,
+                mode => 0755,
+                content => "puppet:///modules/nginx_conf/nginxdissite",
+        }
+
+	file {"/usr/sbin/nginxensite":
+                ensure => present,
+                mode => 0755,
+                content => "puppet:///modules/nginx_conf/nginxensite",
+        }
 }
