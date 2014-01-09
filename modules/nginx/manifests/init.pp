@@ -9,6 +9,7 @@ class nginx() {
 		recurse => true,
 		mode => 0755,
 		content => "puppet:///modules/nginx_conf/ssl",
+		require => Package['nginx'],
 	}
 
 }
