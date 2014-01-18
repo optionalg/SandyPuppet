@@ -1,5 +1,6 @@
 class nginx() {
 
+	#########Refer this link in fase nginx.conf is not available http://askubuntu.com/questions/361902/how-to-install-nginx-after-removed-it-manually
 	package { 'nginx':
 		ensure => present,
 	}
