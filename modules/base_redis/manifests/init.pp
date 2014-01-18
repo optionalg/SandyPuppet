@@ -1,4 +1,4 @@
-class base_redis($server = "64",) {
+define base_redis($server = "64",) {
 
 	file {["/etc/redis", "/var/redis"]:
 		ensure => directory,
