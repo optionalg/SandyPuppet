@@ -1,4 +1,4 @@
-class nodejs() {
+class nodejs($node_version="0.10.23") {
 
 	sruser{nodejs: user => nodejs, }
 
@@ -46,4 +46,12 @@ class nodejs() {
 	}
 	
 	#### Install npm on the system as curl https://npmjs.org/install.sh | sh
+	exec { "install_nodejs":
+                user      => nodejs,
+                command   => "nvm install ${node_version}",
+                cwd       => "/home/nodejs/",
+                logoutput => true,
+                require => Sruser['nodejs'],
+                environment => [ "HOME=/home/nodejs" ],
+        }
 }
