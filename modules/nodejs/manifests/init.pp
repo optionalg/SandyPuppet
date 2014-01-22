@@ -9,6 +9,14 @@ class nodejs() {
 		require => Sruser['nodejs'],
 	}
 
+	file{ "/home/nodejs/cleanNodeApps.sh":
+                owner => nodejs,
+                group => nodejs,
+                mode => '0750',
+                source => "puppet:///modules/nodejs/cleanNodeApps.sh",
+                require => File["/home/nodejs/nodeapps"],
+        }
+
 	file{ "/home/nodejs/deployNodeApp.sh":
 		owner => nodejs,
 		group => nodejs,
