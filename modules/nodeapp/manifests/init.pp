@@ -1,4 +1,4 @@
-define nodeapp( $app_name) {
+define nodeapp( $app_name,) {
 
 	#################To start app using upstart#################
 	file { "/etc/init/${app_name}.conf":
@@ -33,8 +33,9 @@ define nodeapp( $app_name) {
 
 
 	###########Make sure monit is installed
-	file { "/etc/monit/conf.d/${app_name}.monit":
+/*	file { "/etc/monit/conf.d/${app_name}.monit":
 		content => template("nodeapp/monit_conf.erb.xml"),
 		mode => 0644,
 	}
+*/
 }
