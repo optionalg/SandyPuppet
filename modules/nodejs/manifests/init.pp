@@ -55,7 +55,8 @@ class nodejs($node_version="0.10.23") {
 	
 	exec { "install_nodejs":
                 user      => nodejs,
-                command   => "nvm install ${node_version}",
+		command   => "bash -c 'source .profile;nvm install ${node_version}'",
+		path => '/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin',
                 cwd       => "/home/nodejs/",
                 logoutput => true,
                 require => [ Sruser['nodejs'], Exec['install_nvm']],

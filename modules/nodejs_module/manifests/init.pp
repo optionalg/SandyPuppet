@@ -1,5 +1,5 @@
 # This user defined type has dependency on nodejs module nodejs module should also be configured on the system
-define nodejs_module($module) {
+define nodejs_module($module, $node_version="0.10.23") {
 
 	Exec {
 		path => [
@@ -14,7 +14,8 @@ define nodejs_module($module) {
 
 	exec { "install_module_${module}":
 		user      => nodejs,
-		command   => "npm install ${module}",
+		command   => "bash -c 'source .profile;nvm use ${node_version};npm install ${module}'",
+		path => '/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin',
 		cwd       => "/home/nodejs/",
 		logoutput => true,
 		require => Sruser['nodejs'],
