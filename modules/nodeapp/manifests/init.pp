@@ -1,5 +1,6 @@
 define nodeapp( $app_name) {
 
+	#################To start app using upstart#################
 	file { "/etc/init/${app_name}.conf":
 		owner => root,
                 group => root,
@@ -21,7 +22,17 @@ define nodeapp( $app_name) {
                 ensure => ['directory','present'],
                 mode => 0755,
         }
+	
+	file { "/home/nodejs/${app_name}_env.properties":
+                owner => nodejs,
+                group => nodejs,
+               source => "puppet:///modules/nodeapp/env.properties",
+                ensure => ['directory','present'],
+                mode => 0755,
+        }
 
+
+	###########Make sure monit is installed
 	file { "/etc/monit/conf.d/${app_name}.monit":
 		content => template("nodeapp/monit_conf.erb.xml"),
 		mode => 0644,

@@ -5,15 +5,12 @@ class base-mongo::config {
 		managehome => false,
         }
 
-        file { '/data':
-		ensure => directory,
-        }
         
         file {  ["/data/mongo", "/var/log/mongo"] :
 		owner => mongo,
 		group => mongo,
 		ensure => directory,
-		require => [ User['mongo'], File['/data'], ],
+		require => [ User['mongo'] ],
 		before => Class['base-mongo::install'],
 	}
 }

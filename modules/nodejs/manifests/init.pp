@@ -9,6 +9,14 @@ class nodejs($node_version="0.10.23") {
 		require => Sruser['nodejs'],
 	}
 
+	file{ "/home/nodejs/cleanNodeApps.sh":
+                owner => nodejs,
+                group => nodejs,
+                mode => '0750',
+                source => "puppet:///modules/nodejs/cleanNodeApps.sh",
+                require => File["/home/nodejs/nodeapps"],
+        }
+
 	file{ "/home/nodejs/deployNodeApp.sh":
 		owner => nodejs,
 		group => nodejs,
@@ -35,7 +43,7 @@ class nodejs($node_version="0.10.23") {
 			'/sbin'],
 			logoutput => true,
 	}
-
+	#########Git should be present in the system########################
 	exec { "install_nvm":
 		user      => nodejs,
 		command   => "curl https://raw.github.com/creationix/nvm/master/install.sh | sh",
@@ -45,13 +53,12 @@ class nodejs($node_version="0.10.23") {
 		environment => [ "HOME=/home/nodejs" ],
 	}
 	
-	#### Install npm on the system as curl https://npmjs.org/install.sh | sh
 	exec { "install_nodejs":
                 user      => nodejs,
                 command   => "nvm install ${node_version}",
                 cwd       => "/home/nodejs/",
                 logoutput => true,
-                require => Sruser['nodejs'],
+                require => [ Sruser['nodejs'], Exec['install_nvm']],
                 environment => [ "HOME=/home/nodejs" ],
         }
 }
