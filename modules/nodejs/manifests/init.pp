@@ -33,6 +33,29 @@ class nodejs($node_version="0.10.23") {
                 require => File["/home/nodejs/nodeapps"],
         }
 
+	file{ "/home/nodejs/startPm2NodeApp.sh":
+                owner => nodejs,
+                group => nodejs,
+                mode => '0750',
+                source => "puppet:///modules/nodejs/startPm2NodeApp.sh",
+                require => File["/home/nodejs/nodeapps"],
+        }
+
+	file{ "/home/nodejs/stopPm2NodeApp.sh":
+                owner => nodejs,
+                group => nodejs,
+                mode => '0750',
+                source => "puppet:///modules/nodejs/stopPm2NodeApp.sh",
+                require => File["/home/nodejs/nodeapps"],
+        }
+
+	file{ "/home/nodejs/restartPm2NodeApp.sh":
+                owner => nodejs,
+                group => nodejs,
+                mode => '0750',
+                source => "puppet:///modules/nodejs/restartPm2NodeApp.sh",
+                require => File["/home/nodejs/nodeapps"],
+        }
 	Exec {
 		path => [
 			'/usr/local/bin',
