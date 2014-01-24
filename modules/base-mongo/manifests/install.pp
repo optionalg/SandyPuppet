@@ -1,8 +1,13 @@
 class base-mongo::install {
 
+	exec { "add_mongo_key":
+               command => "apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10",
+               logoutput => true,
+       }
 	
 	file { "$base-mongo::params::sources_list_file":
                 source => "puppet:///modules/base-mongo/$base-mongo::params::sources_list_file_content",
+		require => Exec['add_mongo_key'],
         }
       Exec {
                path => [
