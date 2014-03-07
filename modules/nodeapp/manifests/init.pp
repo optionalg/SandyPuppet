@@ -16,13 +16,6 @@ define nodeapp( $app_name,) {
 		mode => 0666,
         }
 
-	file { "/home/nodejs/nodeapps/${app_name}":
-                owner => nodejs,
-                group => nodejs,
-                ensure => ['directory','present'],
-                mode => 0755,
-        }
-	
 	file { "/home/nodejs/${app_name}_env.properties":
                 owner => nodejs,
                 group => nodejs,
@@ -30,6 +23,14 @@ define nodeapp( $app_name,) {
                 ensure => ['directory','present'],
                 mode => 0755,
         }
+
+	file { "/home/nodejs/.ssh/config":
+               owner => nodejs,
+                group => nodejs,
+               source => "puppet:///modules/nodeapp/ssh_config",
+                ensure => 'present',
+                mode => 0755,
+       }
 
 
 	###########Make sure monit is installed
