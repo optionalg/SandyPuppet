@@ -14,7 +14,7 @@ define nodejs_module($module, $node_version="0.10.23") {
 
 	exec { "install_module_${module}":
 		user      => nodejs,
-		command   => "bash -c 'source .profile;nvm use ${node_version};npm install ${module}'",
+		command   => "bash -c 'source .profile;nvm use ${node_version};npm install ${module} -g'",
 		path => '/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin',
 		cwd       => "/home/nodejs/",
 		logoutput => true,
