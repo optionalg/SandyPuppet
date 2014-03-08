@@ -30,7 +30,7 @@ define ejabberd( $admin = "admin", $password="admin", $hostname="localhost"){
 				owner => "ejabberd",
 				group => "ejabberd",
 #                source => "puppet:///modules/ejabberd/ejabberd.cfg",
-		content => template("ejabberd.cfg"),
+		content => template("ejabberd/ejabberd.cfg"),
 			    require => Service['ejabberd'],
     }
 	file {"/etc/ejabberd/ejabberd.pem":
