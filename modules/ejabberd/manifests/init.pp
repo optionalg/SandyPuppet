@@ -56,7 +56,7 @@ define ejabberd( $admin = "admin", $password="admin", $hostname="localhost"){
     exec { "ejabberd_install":
 #              command => "/tmp/ejabberd/autoejabberd.sh install ${admin} ${hostname} ${password}",
 #		command => "echo $HOME",
-		command => "ejabberdctl register ${admin} ${hostname} ${password}"
+		command => "ejabberdctl register ${admin} ${hostname} ${password}",
               logoutput => true,
 #              require => file ['/tmp/ejabberd/autoejabberd.sh'],
 		require => Service['ejabberd'],
