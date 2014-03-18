@@ -14,5 +14,6 @@ define elasticsearch($version = "0.90.5",){
 	exec { "install_elasticsearch":
 		command   => "wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${version}.deb;dpkg -i elasticsearch-${version}.deb",
 		logoutput => true,
+		timeout     => 1800,
 	}	
 }
