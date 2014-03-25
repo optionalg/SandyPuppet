@@ -9,11 +9,17 @@ define sr_redis($port = 6379, $master = "master", $master_port = 6379, $master_h
 		ensure => present,
 		content => template("${redis_conf_file}"),
 	}
-
+/*
 	file {"/etc/init.d/redis_${port}":
                 ensure => present,
                 content => template('sr_redis/redis_init_script'),
 		mode => 0755,
+        }
+*/
+	file {"/etc/init/redis_${port}":
+                ensure => present,
+                content => template('sr_redis/redis_upstart'),
+                mode => 0755,
         }
 
 	file {"/var/redis/${port}":
