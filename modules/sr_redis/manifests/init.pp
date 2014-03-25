@@ -16,7 +16,7 @@ define sr_redis($port = 6379, $master = "master", $master_port = 6379, $master_h
 		mode => 0755,
         }
 */
-	file {"/etc/init/redis_${port}":
+	file {"/etc/init/redis_${port}.conf":
                 ensure => present,
                 content => template('sr_redis/redis_upstart'),
                 mode => 0755,
