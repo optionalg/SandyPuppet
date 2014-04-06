@@ -21,6 +21,12 @@ define sr_redis($port = 6379, $master = "master", $master_port = 6379, $master_h
                 content => template('sr_redis/redis_upstart'),
                 mode => 0755,
         }
+	service { "redis_${port}":
+               enable => true,
+               ensure => running,
+               provider => upstart,
+               require =>[File["/etc/init/redis_${port}.conf"], File["/etc/redis/${port}.conf"]],
+       }
 
 	file {"/var/redis/${port}":
 		ensure => directory,
