@@ -16,4 +16,11 @@ define elasticsearch($version = "0.90.5",){
 		logoutput => true,
 		timeout     => 1800,
 	}	
+
+	service { "elasticsearch":
+		enable => true,
+               ensure => running,
+               require =>Exec["install_elasticsearch"],
+       }
+
 }
