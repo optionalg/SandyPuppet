@@ -15,7 +15,7 @@ mkdir ${BLUE_APP_ROOT_DIR}
 echo "Copying the app content"
 tar -vxzf ${APP}.tar.gz -C ${BLUE_APP_ROOT_DIR}
 cd ${BLUE_APP_ROOT_DIR}
-nvm use 0.10.23
+nvm use 0.10
 
 npm install
 result=$?
