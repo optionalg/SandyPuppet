@@ -11,5 +11,13 @@ class base_system() {
 	package { 'curl':
                 ensure => present,
         }
+	package { 'python-software-properties':
+		ensure => present,
+        }
+	package { 'htop':
+		ensure => present,
+        }
+
+
 
 }
