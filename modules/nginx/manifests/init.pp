@@ -14,7 +14,7 @@ class nginx() {
         }
 
 	exec { "update_nginx":
-                command   => "add-apt-repository ppa:nginx/stable;apt-get update;apt-get upgrade",
+                command   => "add-apt-repository ppa:nginx/stable -y;apt-get update -y;apt-get upgrade -y",
                 logoutput => true,
                 timeout     => 1800,
         }	
