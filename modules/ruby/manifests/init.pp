@@ -10,10 +10,16 @@ class ruby($ruby_version="1.9.3") {
 			'/sbin'],
 			logoutput => true,
 	}
-	#########Git should be present in the system########################
+
+	file { "/root/rubyInstall.sh":
+		source => "puppet:///modules/ruby/rubyInstall.sh",
+		mode => '0750',
+	}
+
 	exec { "install_rvm":
-		command   => "\curl -sSL https://get.rvm.io | bash -s stable",
+		command   => "cat /root/rubyInstall.sh | bash -s stable",
 		logoutput => true,
+		require => [ File['/root/rubyInstall.sh']],
 	}
 	
 	exec { "install_nodejs":
