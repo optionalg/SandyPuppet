@@ -1,0 +1,1 @@
+rs.initiate({"_id" : "<%= replicaSet %>","members" : [{"_id" : 0,"host" : "<%= host_name %>:<%= port %>", "priority" : 100}]})
