@@ -69,7 +69,7 @@ class nodejs($node_version="0.10.23") {
 	#########Git should be present in the system########################
 	exec { "install_nvm":
 		user      => nodejs,
-		command   => "curl https://raw.github.com/creationix/nvm/master/install.sh | sh",
+		command   => "curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | sh",
 		cwd       => "/home/nodejs/",
 		logoutput => true,
 		require => Sruser['nodejs'],

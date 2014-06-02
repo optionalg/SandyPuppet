@@ -24,6 +24,27 @@ if [ $result != 0 ]; then
         exit 1
 fi
 
+rm -rf .bower-cache
+rm -rf /home/nodejs/.cache/bower
+bower cache clean
+bower install
+if [ $result != 0 ]; then
+        echo "Bower install failed. exit!"
+        exit 1
+fi
+
+echo "Bower install successfull"
+echo "Stopping ${APP} app"
+${HOME}/stopPm2NodeApp.sh ${APP}
+
+rm -f ${GREEN_APP_ROOT_DIR}
+
+#Creating the link to newly downloaded code
+ln -s ${BLUE_APP_ROOT_DIR} ${GREEN_APP_ROOT_DIR}
+
+${HOME}/startPm2NodeApp.sh ${APP}
+
+<<COMMENT1
 for i in {1..10}; do
 	rm -rf .bower-cache
 	rm -rf ${HOME}/.cache/bower
@@ -47,5 +68,6 @@ for i in {1..10}; do
 		exit 0
 	fi
 done
+COMMENT1
 
 exit 1
