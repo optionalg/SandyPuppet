@@ -1,5 +1,5 @@
 # This user defined type has dependency on nodejs module nodejs module should also be configured on the system
-define nodejs_module($module, $node_version="0.10.23") {
+define nodejs_module($module, $node_version="0.10.26") {
 
 	Exec {
 		path => [
