@@ -11,7 +11,7 @@ define replicated_single_mongo($replicaSet="rs0", $host_name="127.0.0.1", $port=
 	}
 
 	file { "/etc/mongodb.conf":
-		source => "puppet:///modules/replicated_single_mongo/mongodb.conf",
+		content => template('replicated_single_mongo/mongodb.conf'),
 		mode    => '644',
 	}
 
