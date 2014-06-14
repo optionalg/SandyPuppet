@@ -1,4 +1,4 @@
-class nginx() {
+define nginx($server="default") {
 
 	#########Refer this link in fase nginx.conf is not available http://askubuntu.com/questions/361902/how-to-install-nginx-after-removed-it-manually
 
