@@ -25,12 +25,20 @@ class nginx() {
 	}
 
 	file {"/etc/nginx/ssl":
-		ensure => present,
-		recurse => true,
-		mode => 0755,
-		source => "puppet:///modules/nginx/ssl",
+		ensure => ['directory', 'present'],
 		require => Package['nginx'],
+		mode => 0755,
 	}
+
+	file {"/etc/nginx/ssl/server.key":
+               source => "puppet:///modules/nginx/$server/server.key",
+               require => File['/etc/nginx/ssl'],
+       }
+
+       file {"/etc/nginx/ssl/server.crt":
+                source => "puppet:///modules/nginx/$server/server.crt",
+               require => File['/etc/nginx/ssl'],
+        }
 
 	file {"/usr/sbin/nginxdissite":
                 ensure => present,
