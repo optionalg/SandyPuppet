@@ -3,7 +3,7 @@ RELEASE_ARCHIVE=$1
 SERVER_NAME=$2
 TOMCAT_DIR=/usr/local/$2
 
-/home/<%= user %>/release/stopServer.sh $SERVER_NAME
+/home/<%= @user %>/release/stopServer.sh $SERVER_NAME
 
 echo "Clearing ROOT directory"
 rm -rf $TOMCAT_DIR/webapps/ROOT/*;
@@ -11,5 +11,5 @@ rm -rf $TOMCAT_DIR/webapps/ROOT/*;
 echo "Placing the new content in web server"
 unzip $RELEASE_ARCHIVE -d $TOMCAT_DIR/webapps/ROOT/;
 
-/home/<%= user %>/release/startServer.sh $SERVER_NAME
+/home/<%= @user %>/release/startServer.sh $SERVER_NAME
 
